@@ -1,0 +1,35 @@
+{
+  "title": "Command Slash to Control x in Alacritty",
+  "rules": [
+    {
+      "description": "Map Command Slash to Control x in Alacritty",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+                "key_code": "x",
+                "modifiers": [
+                    "left_control"
+                ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^io.alacritty"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
