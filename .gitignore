@@ -1,4 +1,3 @@
 .DS_Store
-./iterm2/
-./alacritty/.alacritty-colorscheme
-./alacritty/.alacritty-colorscheme/*
+iterm2/
+alacritty/.alacritty-colorscheme/
