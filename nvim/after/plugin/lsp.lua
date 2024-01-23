@@ -14,6 +14,7 @@ lsp.ensure_installed({
     'lua_ls',
     'clangd',
     'pyright',
+    'gopls'
     -- 'markdown',
 })
 
@@ -27,67 +28,51 @@ lsp.on_attach(function(client, bufnr)
   -- end
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
 
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-lsp.configure('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp
-
-
--- require'xbase'.setup({
---     log_level = vim.log.levels.INFO,
---     log_buffer = {
---         focus  = false,
---         default_direction = "horizontal",
---     },
---     sourcekit = {
---     },
---     simctl = {
---         iOS = {
---             "iPhone 14 Pro",
---         },
---     },
---     mappings = {
---         --- Whether xbase mapping should be disabled.
---         enable = true,
---         --- Open build picker. showing targets and configuration.
---         build_picker = 0, --- set to 0 to disable
---         --- Open run picker. showing targets, devices and configuration
---         run_picker = 0, --- set to 0 to disable
---         --- Open watch picker. showing run or build, targets, devices and configuration
---         watch_picker = 0, --- set to 0 to disable
---         --- A list of all the previous pickers
---         all_picker = "<leader>ef", --- set to 0 to disable
---     },
--- })
-
-
-local lsp_config = require('lspconfig')
-lsp_config.sourcekit.setup{
-    -- cmd = { '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp' },
-    root_dir = lsp_config.util.root_pattern("Package.swift", ".git", "*.xcodeproj"),
+require('lspconfig').clangd.setup{
+    capabilities = capabilities
 }
 
+
 lsp.setup()
+
+
+local cmp = require("cmp")
+
+
+-- Press enter to select suggestion
+cmp.setup({
+  mapping = {
+     ["<CR>"] = cmp.mapping({
+       i = function(fallback)
+         if cmp.visible() and cmp.get_active_entry() then
+           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+         else
+           fallback()
+         end
+       end,
+       s = cmp.mapping.confirm({ select = true }),
+       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+     }),
+  }
+})
+
 
 
 -- local Remap = require("galacticcoder.keymap")

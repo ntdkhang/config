@@ -4,7 +4,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
 
 
--- Move Block of code 
+-- Move Block of code
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -21,7 +21,7 @@ vim.keymap.set("n", "gd", "gdzz")
 -- greatest remap ever: paste on a selected text and put the selected text to register
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
--- jump to end of line 
+-- jump to end of line
 vim.keymap.set("i", "<C-a>", "<Esc>A")
 -- Ctrl Enter to get new line and move down in insert mode
 vim.keymap.set("i", "<C-o>", "<Esc>o")
@@ -54,8 +54,6 @@ vim.keymap.set("v", "{", "<gv")
 
 -- search replace all words under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 
-
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle nvim tree
+vim.keymap.set("n", "<C-n>", ":noh<CR>")

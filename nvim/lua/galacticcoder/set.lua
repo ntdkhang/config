@@ -19,7 +19,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -42,4 +42,20 @@ vim.opt.shortmess:append("c")
 
 vim.opt.mouse = "a"
 
+-- search smartcase: only do case-sensitive when there's a uppercase letter in the search
+-- incLude
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
+-- Prevent auto commenting next line
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
+
+
+-- remove trailing whitespace
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
+-- vim.api.nvim_create_autocmd
