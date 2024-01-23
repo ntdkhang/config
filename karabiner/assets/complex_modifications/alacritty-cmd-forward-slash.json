@@ -24,7 +24,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^io.alacritty"
+                "^io.alacritty",
+                "^org.alacritty"
               ]
             }
           ]

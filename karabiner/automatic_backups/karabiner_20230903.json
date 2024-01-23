@@ -24,8 +24,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^io.alacritty",
-                                            "^org.alacritty"
+                                            "^io.alacritty"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -34,7 +33,41 @@
                                     "key_code": "slash",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": {
+                                            "mandatory": [
+                                                "control"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map Command Slash to Control x in Alacritty",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^io.alacritty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
                                         ]
                                     }
                                 },
@@ -341,7 +374,7 @@
                     },
                     "to": [
                         {
-                            "consumer_key_code": "rewind"
+                            "consumer_key_code": "play_or_pause"
                         }
                     ]
                 },

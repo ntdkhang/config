@@ -341,7 +341,7 @@
                     },
                     "to": [
                         {
-                            "consumer_key_code": "rewind"
+                            "consumer_key_code": "play_or_pause"
                         }
                     ]
                 },

@@ -5,18 +5,18 @@ key_bindings:
   # - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
   - { key: Back,     mods: Command, chars: "\x15"                        } # Delete line
   - { key: Back,     mods: Alt,     chars: "\x17"                    } # Delete word
-  - { key: T,        mods: Command, chars: "\x02\x63"                    } # Ctrl-b + c (new window in tmux)
-  - { key: W,        mods: Command, chars: "\x02\x78"                    } # Ctrl-b + x (kill pane in tmux)
-  - { key: Key1,     mods: Command, chars: "\x02\x31"                    } # Ctrl-b + 1 (go to window 1 in tmux)
-  - { key: Key2,     mods: Command, chars: "\x02\x32"                    } # Ctrl-b + 2 (go to window 2 in tmux)
-  - { key: Key3,     mods: Command, chars: "\x02\x33"                    } # Ctrl-b + 3 (go to window 3 in tmux)
-  - { key: Key4,     mods: Command, chars: "\x02\x34"                    } # Ctrl-b + 4 (go to window 4 in tmux)
-  - { key: Key5,     mods: Command, chars: "\x02\x35"                    } # Ctrl-b + 5 (go to window 5 in tmux)
-  - { key: Key6,     mods: Command, chars: "\x02\x36"                    } # Ctrl-b + 6 (go to window 6 in tmux)
-  - { key: Key7,     mods: Command, chars: "\x02\x37"                    } # Ctrl-b + 7 (go to window 7 in tmux)
-  - { key: Key8,     mods: Command, chars: "\x02\x38"                    } # Ctrl-b + 8 (go to window 8 in tmux)
-  - { key: Key9,     mods: Command, chars: "\x02\x39"                    } # Ctrl-b + 9 (go to window 9 in tmux)
-  - { key: Key0,     mods: Command, chars: "\x02\x30"                    } # Ctrl-b + 0 (go to window 0 in tmux)
+  - { key: T,        mods: Command, chars: "\x01\x63"                    } # Ctrl-b + c (new window in tmux)
+  - { key: W,        mods: Command, chars: "\x01\x78"                    } # Ctrl-b + x (kill pane in tmux)
+  - { key: Key1,     mods: Command, chars: "\x01\x31"                    } # Ctrl-b + 1 (go to window 1 in tmux)
+  - { key: Key2,     mods: Command, chars: "\x01\x32"                    } # Ctrl-b + 2 (go to window 2 in tmux)
+  - { key: Key3,     mods: Command, chars: "\x01\x33"                    } # Ctrl-b + 3 (go to window 3 in tmux)
+  - { key: Key4,     mods: Command, chars: "\x01\x34"                    } # Ctrl-b + 4 (go to window 4 in tmux)
+  - { key: Key5,     mods: Command, chars: "\x01\x35"                    } # Ctrl-b + 5 (go to window 5 in tmux)
+  - { key: Key6,     mods: Command, chars: "\x01\x36"                    } # Ctrl-b + 6 (go to window 6 in tmux)
+  - { key: Key7,     mods: Command, chars: "\x01\x37"                    } # Ctrl-b + 7 (go to window 7 in tmux)
+  - { key: Key8,     mods: Command, chars: "\x01\x38"                    } # Ctrl-b + 8 (go to window 8 in tmux)
+  - { key: Key9,     mods: Command, chars: "\x01\x39"                    } # Ctrl-b + 9 (go to window 9 in tmux)
+  - { key: Key0,     mods: Command, chars: "\x01\x30"                    } # Ctrl-b + 0 (go to window 0 in tmux)
 
 env:
   TERM: xterm-256color
@@ -30,12 +30,12 @@ window:
     y: 0
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
   decorations: full
   startup_mode: Windowed
 
 scrolling:
-  history: 10000
+  history: 1000
   multiplier: 3
 
 # Font configuration (changes require restart)
