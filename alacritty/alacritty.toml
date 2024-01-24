@@ -1,9 +1,8 @@
-live_config_import = [
+import = [
     "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
 ]
-reload = true
+live_config_reload = true
 
-"window.opacity" = 1.0
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -14,6 +13,7 @@ unfocused_hollow = true
 
 [env]
 TERM = "screen-256color"
+
 
 [font]
 size = 14.0
@@ -125,6 +125,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 decorations = "full"
 dynamic_padding = false
 startup_mode = "Windowed"
+opacity = 1.0
 
 [window.dimensions]
 columns = 0
