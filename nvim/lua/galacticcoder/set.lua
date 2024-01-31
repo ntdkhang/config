@@ -1,4 +1,4 @@
--- vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c-i-ci-ver:block,r-cr-o:hor20"
 vim.opt.termguicolors = true
 
 vim.opt.nu = true
@@ -58,5 +58,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
+
 
 -- vim.api.nvim_create_autocmd
