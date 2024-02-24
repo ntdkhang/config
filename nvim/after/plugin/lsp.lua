@@ -2,11 +2,6 @@ local lsp_zero = require('lsp-zero')
 local util = require("lspconfig.util")
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
-    lsp_zero.default_keymaps({buffer = bufnr})
-end)
 
 require('lspconfig').sourcekit.setup({
     capabilities = capabilities,
@@ -19,8 +14,17 @@ require('lspconfig').sourcekit.setup({
         or util.find_git_ancestor(filename)
         or util.root_pattern("Package.swift")(filename)
     end,
+    handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, 'rounded'),
+        ["txtdocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, 'rounded'),
+    },
 })
 
+lsp_zero.on_attach(function(client, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp_zero.default_keymaps({buffer = bufnr})
+end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -55,9 +59,39 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("i", "<C-k>", function() require('lsp_signature').toggle_float_win() end, opts)
+
 end)
 
 
+
+-- copy paste from (https://github.com/hrsh7th/nvim-cmp/issues/156#issuecomment-916338617)
+-- use for reordering the autocomplete
+local lspkind_comparator = function(conf)
+    local lsp_types = require('cmp.types').lsp
+    return function(entry1, entry2)
+        if entry1.source.name ~= 'nvim_lsp' then
+            if entry2.source.name == 'nvim_lsp' then
+                return false
+            else
+                return nil
+            end
+        end
+        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+        local priority1 = conf.kind_priority[kind1] or 0
+        local priority2 = conf.kind_priority[kind2] or 0
+        if priority1 == priority2 then
+            return nil
+        end
+        return priority2 < priority1
+    end
+end
+
+local label_comparator = function(entry1, entry2)
+    return entry1.completion_item.label < entry2.completion_item.label
+end
 
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()
@@ -116,6 +150,7 @@ cmp.setup({
     },
     sources = {
         {name = 'nvim_lsp'},
+        {name = 'path'},
         {name = 'buffer'},
     },
     -- formatting = cmp_format,
@@ -123,6 +158,11 @@ cmp.setup({
         -- scroll up and down the documentation window
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        --[[ ['<C-k'] = cmp.mapping({
+            function(fallback)
+                if !cmp.visible() then
+                    cmp.select_next_item
+        }), ]]
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
                 if cmp.visible() and cmp.get_active_entry() then
@@ -164,62 +204,56 @@ cmp.setup({
         ),
 
     }),
+    sorting = {
+        -- copy paste from (https://github.com/hrsh7th/nvim-cmp/issues/156#issuecomment-916338617)
+        -- use for reordering the autocomplete
+        comparators = {
+            lspkind_comparator({
+                kind_priority = {
+                    Field = 11,
+                    Property = 11,
+                    Constant = 10,
+                    Enum = 10,
+                    EnumMember = 10,
+                    Event = 10,
+                    Function = 10,
+                    Method = 10,
+                    Operator = 10,
+                    Reference = 10,
+                    Struct = 10,
+                    Variable = 9,
+                    File = 8,
+                    Folder = 8,
+                    Class = 5,
+                    Color = 5,
+                    Module = 5,
+                    Keyword = 2,
+                    Constructor = 12,
+                    Interface = 1,
+                    Snippet = 0,
+                    Text = 1,
+                    TypeParameter = 1,
+                    Unit = 1,
+                    Value = 1,
+                },
+            }),
+            label_comparator,
+        },
+    }
 })
---[[
--- copy paste from
--- https://github.com/neovim/nvim-lspconfig/blob/ede4114e1fd41acb121c70a27e1b026ac68c42d6/lua/lspconfig/server_configurations/gopls.lua
-local util = require 'lspconfig.util'
-local async = require 'lspconfig.async'
--- -> the following line fixes it - mod_cache initially set to value that you've got from `go env GOMODCACHE` command
-local mod_cache = '/root/go/pkg/mod'
 
--- setting the config for gopls, the contents below is also copy-paste from
--- https://github.com/neovim/nvim-lspconfig/blob/ede4114e1fd41acb121c70a27e1b026ac68c42d6/lua/lspconfig/server_configurations/gopls.lua
-require('lspconfig.configs').gopls = {
-    default_config = {
-        cmd = { 'gopls' },
-        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-        root_dir = function(fname)
-            -- see: https://github.com/neovim/nvim-lspconfig/issues/804
-            if not mod_cache then
-                local result = async.run_command 'go env GOMODCACHE'
-                if result and result[1] then
-                    mod_cache = vim.trim(result[1])
-                end
-            end
-            if fname:sub(1, #mod_cache) == mod_cache then
-                local clients = vim.lsp.get_active_clients { name = 'gopls' }
-                if #clients > 0 then
-                    return clients[#clients].config.root_dir
-                end
-            end
-            return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
-        end,
-        single_file_support = true,
-    }}
-]]
-
-
-
-
-
---[[ local cmp = require("cmp")
-
-
--- Press enter to select suggestion
-cmp.setup({
-  mapping = {
-     ["<CR>"] = cmp.mapping({
-       i = function(fallback)
-         if cmp.visible() and cmp.get_active_entry() then
-           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-         else
-           fallback()
-         end
-       end,
-       s = cmp.mapping.confirm({ select = true }),
-       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-     }),
-  }
+-- copy paste from (https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1429989436)
+-- to avoid jumping to previous snippet
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '*',
+  callback = function()
+    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require('luasnip').session.jump_active
+    then
+      require('luasnip').unlink_current()
+    end
+  end
 })
-]]
+
+

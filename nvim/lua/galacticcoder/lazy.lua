@@ -82,12 +82,7 @@ require("lazy").setup({
         }
     },
 
-    {
-          "ray-x/lsp_signature.nvim",
-          event = "VeryLazy",
-          opts = {},
-          config = function(_, opts) require'lsp_signature'.setup(opts) end
-    },
+    "ray-x/lsp_signature.nvim",
 
 
     -- Primeagen doesn"t create lodash
@@ -97,9 +92,17 @@ require("lazy").setup({
 
     "mbbill/undotree",
 
+
     -- Colorscheme section
     "ellisonleao/gruvbox.nvim",
     "rebelot/kanagawa.nvim",
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -118,7 +121,7 @@ require("lazy").setup({
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
-    }
+    },
 
 
 
@@ -133,8 +136,23 @@ require("lazy").setup({
     -- },
 
 
-    -- RACKET SHIT FOR SCHOOL
-    -- "Olical/conjure",
-    -- "wlangstroth/vim-racket",
+
+    -- iOS DEV
+    {
+        "wojciech-kulik/xcodebuild.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+            require("xcodebuild").setup({
+                -- put some options here or leave it empty to use default settings
+            })
+        end,
+    },
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    }
 
 })
