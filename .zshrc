@@ -10,6 +10,8 @@ export DEV="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev
 export SCHOOL="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/School"
 export NOTES="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Personal/Notes"
 
+export RIPGREP_CONFIG_PATH="~/.config/.ripgreprc"
+
 export PATH=$PATH:/usr/local/go/bin
 
 
@@ -107,3 +109,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Created by `pipx` on 2024-03-28 14:42:40
+export PATH="$PATH:/Users/dk/.local/bin"

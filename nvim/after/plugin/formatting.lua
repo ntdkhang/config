@@ -1,6 +1,8 @@
+--[[
 require("conform").setup({
     formatters_by_ft = {
         swift = { "swiftformat_ext" },
+        cpp = {},
     },
     format_on_save = {
         timeout_ms = 500,
@@ -26,6 +28,7 @@ require("conform").setup({
         },
     },
 })
+]]
 
 --[[
 EXAMPLE .swiftformat file to place in project directory

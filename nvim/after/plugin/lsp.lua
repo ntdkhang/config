@@ -1,9 +1,14 @@
+
+
+
+--[[
 local lsp_zero = require('lsp-zero')
 local util = require("lspconfig.util")
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 
 require('lspconfig').sourcekit.setup({
+    filetypes = {"swift"},
     capabilities = capabilities,
     cmd = {
         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
@@ -20,11 +25,11 @@ require('lspconfig').sourcekit.setup({
     },
 })
 
-lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
-    lsp_zero.default_keymaps({buffer = bufnr})
-end)
+-- lsp_zero.on_attach(function(client, bufnr)
+--     -- see :help lsp-zero-keybindings
+--     -- to learn the available actions
+--     lsp_zero.default_keymaps({buffer = bufnr})
+-- end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -67,6 +72,7 @@ end)
 
 -- copy paste from (https://github.com/hrsh7th/nvim-cmp/issues/156#issuecomment-916338617)
 -- use for reordering the autocomplete
+
 local lspkind_comparator = function(conf)
     local lsp_types = require('cmp.types').lsp
     return function(entry1, entry2)
@@ -158,11 +164,6 @@ cmp.setup({
         -- scroll up and down the documentation window
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        --[[ ['<C-k'] = cmp.mapping({
-            function(fallback)
-                if !cmp.visible() then
-                    cmp.select_next_item
-        }), ]]
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
                 if cmp.visible() and cmp.get_active_entry() then
@@ -256,4 +257,5 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   end
 })
 
+-- ]]
 

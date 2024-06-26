@@ -152,9 +152,11 @@ require("lazy").setup({
             })
         end,
     },
+    --[[ I used this to format Swift code. But it keep formatting C++ so I deleted this
     {
         'stevearc/conform.nvim',
         opts = {},
     }
+    ]]
 
 })
