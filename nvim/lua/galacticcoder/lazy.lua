@@ -46,7 +46,6 @@ require("lazy").setup({
             "MunifTanjim/nui.nvim",
         }
     },
-    "nvim-tree/nvim-web-devicons", -- icons for nvim tree
     "numToStr/Comment.nvim",       -- comment code
     "windwp/nvim-autopairs",       -- auto pairs brackets
     -- "lukas-reineke/indent-blankline.nvim", -- show indent of each line

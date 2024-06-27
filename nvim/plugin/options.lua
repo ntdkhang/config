@@ -1,3 +1,5 @@
+vim.cmd 'colorscheme kanagawa'
+
 vim.opt.guicursor = "n-v-c-i-ci-ver:block,r-cr-o:hor20"
 vim.opt.termguicolors = true
 
@@ -55,8 +57,8 @@ vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 
 -- remove trailing whitespace
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
+    pattern = { "*" },
+    command = [[%s/\s\+$//e]],
 })
 
 
