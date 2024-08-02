@@ -21,6 +21,8 @@ require("telescope").setup {
         file_browser = {
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
+            hidden = { file_browser = true, folder_browser = true },
+            select_buffer = true, -- will place the cursor at the path of the current file
         }
     },
 }
@@ -41,4 +43,8 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find)
 
 
-vim.keymap.set('n', '<leader>et', ":Telescope file_browser<CR>", {})
+-- vim.keymap.set('n', '<leader>et', ":Telescope file_browser<CR>", {})
+
+-- open file_browser with the path of the current buffer
+vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h<CR>")
+

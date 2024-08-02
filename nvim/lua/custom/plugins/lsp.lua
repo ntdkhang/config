@@ -60,16 +60,23 @@ return {
                     init_options = { clangdFileStatus = true },
                     filetypes = { "c", "cpp" },
                 },
+                pyright = {
+                    filetypes = {"python"},
+                },
+                sourcekit = {
+                    cmd = {"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"},
+                    filetypes = {"swift"}
+                }
             }
 
-            local servers_to_install = vim.tbl_filter(function(key)
-                local t = servers[key]
-                if type(t) == "table" then
-                    return not t.manual_install
-                else
-                    return t
-                end
-            end, vim.tbl_keys(servers))
+            -- local servers_to_install = vim.tbl_filter(function(key)
+            --     local t = servers[key]
+            --     if type(t) == "table" then
+            --         return not t.manual_install
+            --     else
+            --         return t
+            --     end
+            -- end, vim.tbl_keys(servers))
 
             require("mason").setup()
             local ensure_installed = {
@@ -78,7 +85,8 @@ return {
                 "pyright",
             }
 
-            vim.list_extend(ensure_installed, servers_to_install)
+            -- vim.list_extend(ensure_installed, servers_to_install)
+
             require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
             for name, config in pairs(servers) do
@@ -115,7 +123,7 @@ return {
                     vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 
-                    vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
+                    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = 0 })
                     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
 
                     local filetype = vim.bo[bufnr].filetype
