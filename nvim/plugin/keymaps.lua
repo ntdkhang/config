@@ -21,8 +21,12 @@ vim.keymap.set("n", "gd", "gdzz")
 -- greatest remap ever: paste on a selected text and put the selected text to register
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
+-- auto reindent when pasting
+vim.keympa.set("n", "p", "`[v`]=")
+
 -- jump to end of line while in insert mode
-vim.keymap.set("i", "<C-e>", "<Esc>A")
+-- vim.keymap.set("i", "<C-e>", "<Esc>A")
+
 -- Ctrl Enter to get new line and move down in insert mode
 vim.keymap.set("i", "<C-o>", "<Esc>o")
 
