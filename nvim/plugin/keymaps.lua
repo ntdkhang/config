@@ -22,7 +22,7 @@ vim.keymap.set("n", "gd", "gdzz")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- auto reindent when pasting
-vim.keympa.set("n", "p", "`[v`]=")
+vim.keymap.set("n", "p", "p`[v`]=")
 
 -- jump to end of line while in insert mode
 -- vim.keymap.set("i", "<C-e>", "<Esc>A")
