@@ -25,7 +25,7 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "p", "p`[v`]=")
 
 -- jump to end of line while in insert mode
--- vim.keymap.set("i", "<C-e>", "<Esc>A")
+vim.keymap.set("i", "<C-;>", "<Esc>A")
 
 -- Ctrl Enter to get new line and move down in insert mode
 vim.keymap.set("i", "<C-o>", "<Esc>o")
