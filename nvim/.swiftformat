@@ -1,2 +1,4 @@
-# format options
---redundanttype inferred
+--indent 4
+
+--disable emptyBraces, redundantType
+

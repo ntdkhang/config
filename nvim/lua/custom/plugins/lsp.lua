@@ -61,11 +61,11 @@ return {
                     filetypes = { "c", "cpp" },
                 },
                 pyright = {
-                    filetypes = {"python"},
+                    filetypes = { "python" },
                 },
                 sourcekit = {
-                    cmd = {"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"},
-                    filetypes = {"swift"}
+                    cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+                    filetypes = { "swift" }
                 }
             }
 
@@ -148,10 +148,11 @@ return {
             require('lsp_signature').setup({})
 
             -- Autoformatting Setup
-            --[[
+
             require("conform").setup {
                 formatters_by_ft = {
                     lua = { "stylua" },
+                    swift = { "swiftformat" },
                 },
             }
 
@@ -159,12 +160,11 @@ return {
                 callback = function(args)
                     require("conform").format {
                         bufnr = args.buf,
-                        lsp_fallback = true,
+                        lsp_fallback = false, --turn this off so it doesn't automatically format using lsp
                         quiet = true,
                     }
                 end,
             })
-            --]]
         end,
     },
 }

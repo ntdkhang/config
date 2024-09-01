@@ -15,7 +15,14 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+-- wrapping long lines
+-- https://stackoverflow.com/questions/36950231/auto-wrap-lines-in-vim-without-inserting-newlines
+--- vim.opt.autoindent = true -- copy indent from current line when starting new one-- vim.opt.autoindent = true -- copy indent from current line when starting new one-- vim.opt.autoindent = true -- copy indent from current line when starting new one- -- vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.wrap = true
+vim.opt.textwidth = 0
+vim.opt.wrapmargin = 0
+vim.opt.linebreak = true
+-- vim.opt.columns = 80
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -60,6 +67,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
 })
+
+
+-- no autoformat
+vim.g.autoformat = false
 
 
 -- vim.api.nvim_create_autocmd

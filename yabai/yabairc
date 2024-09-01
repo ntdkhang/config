@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# Run this manually after restart computer
 sudo yabai --load-sa
 
 
