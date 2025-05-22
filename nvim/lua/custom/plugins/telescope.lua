@@ -8,6 +8,7 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         'nvim-telescope/telescope-media-files.nvim',
         "nvim-lua/popup.nvim",
+        "kkharji/sqlite.lua",
     },
     config = function()
         require "custom.telescope"

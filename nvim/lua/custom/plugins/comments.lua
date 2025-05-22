@@ -23,7 +23,7 @@ return {
 
             vim.keymap.set("i", "<C-x>", "<Esc>gcca", {remap = true})
             vim.keymap.set("n", "<C-x>", "gcc", {remap = true})
-            vim.keymap.set("v", "<C-x>", "gcc", {remap = true})
+            vim.keymap.set("v", "<C-x>", "gc", {remap = true})
             vim.keymap.set("n", "<C-x>", "gcc", {remap = true})
         end,
     }

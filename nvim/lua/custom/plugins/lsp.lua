@@ -33,6 +33,7 @@ return {
 
             local lspconfig = require "lspconfig"
 
+
             local servers = {
                 bashls = true,
                 gopls = {
@@ -66,7 +67,12 @@ return {
                 sourcekit = {
                     cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
                     filetypes = { "swift" }
-                }
+                },
+                ts_ls = {
+                },
+                -- angularls = {
+                --     filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'htmlangular' }
+                -- }
             }
 
             -- local servers_to_install = vim.tbl_filter(function(key)
@@ -83,6 +89,8 @@ return {
                 "clangd",
                 "lua_ls",
                 "pyright",
+                "typescript-language-server"
+                -- "angularls"
             }
 
             -- vim.list_extend(ensure_installed, servers_to_install)

@@ -126,16 +126,12 @@ require("lazy").setup({
 
 
 
-    -- "mickael-menu/zk-nvim",
-
-    -- {
-    --     "epwalsh/obsidian.nvim",
-    --     dependencies = {
-    --         -- Required.
-    --         "nvim-lua/plenary.nvim",
-    --     },
-    -- },
-
+    -- HogRider
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 
 
     -- iOS DEV

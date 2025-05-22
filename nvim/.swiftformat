@@ -1,4 +1,3 @@
 --indent 4
 
---disable emptyBraces, redundantType
-
+--disable emptyBraces, redundantType, unusedArguments
