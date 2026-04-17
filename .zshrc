@@ -14,7 +14,7 @@ export DEV="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev
 export SCHOOL="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/School"
 export NOTES="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Personal/Notes"
 
-export RIPGREP_CONFIG_PATH="~/.config/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
 export PATH=$PATH:/usr/local/go/bin
 
