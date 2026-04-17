@@ -118,9 +118,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/Users/dk/.local/bin"
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -149,3 +146,4 @@ source <(JUST_COMPLETE=zsh just)
 export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
 export BRAIN_USER="khang"
 # Mille - END
+export PATH="$HOME/.local/bin:$PATH"
