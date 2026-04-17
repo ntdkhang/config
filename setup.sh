@@ -60,9 +60,9 @@ BREW_FORMULAS=(
     neovim tmux
     # Languages / runtimes (rust has its own installer below)
     go node pnpm
-    # Window mgmt / keyboard
-    koekeishiya/formulae/yabai
-    koekeishiya/formulae/skhd
+    # Window mgmt / keyboard (author was koekeishiya, now asmvik)
+    asmvik/formulae/yabai
+    asmvik/formulae/skhd
     FelixKratz/formulae/sketchybar
     # Nerd font
     font-symbols-only-nerd-font
