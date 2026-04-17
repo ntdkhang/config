@@ -1,0 +1,82 @@
+
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+
+/* THIS FILE WAS GENERATED!
+ *
+ * This file was generated automatically. You may or may not want to
+ * edit it directly.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/backlight.h>
+
+/ {
+  behaviors {
+    #include "macros.dtsi"
+    #include "version.dtsi"
+
+    hm: homerow_mods {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick_tap_ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+    };
+  };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+
+        default_layer {
+            bindings = <
+ &kp EQUAL  &kp N1     &kp N2  &kp N3  &kp N4  &kp N5               &none                                                                                    &mo 2  &kp N6  &kp N7            &kp N8    &kp N9    &kp N0  &kp MINUS
+   &kp TAB   &kp Q      &kp W   &kp E   &kp R   &kp T               &none                                                                                    &none   &kp Y   &kp U             &kp I     &kp O     &kp P   &kp BSLH
+   &kp ESC   &kp A      &kp S   &kp D   &kp F   &kp G               &mo 3  &kp LEFT_CONTROL    &kp LEFT_WIN                    &kp RIGHT_WIN  &kp RCTRL      &mo 3   &kp H   &kp J             &kp K     &kp L  &kp SEMI    &kp SQT
+ &kp LSHFT   &kp Z      &kp X   &kp C   &kp V   &kp B                                          &kp LEFT_ALT                    &kp RIGHT_ALT                         &kp N   &kp M         &kp COMMA   &kp DOT  &kp FSLH  &kp RSHFT
+     &mo 1   &mo 3  &kp GRAVE   &none   &none                    &kp BSPC           &kp DEL  &kp LEFT_SHIFT                  &kp RIGHT_SHIFT  &kp ENTER  &kp SPACE           &none  &kp LEFT_BRACKET  &kp RBKT     &none      &mo 2
+            >;
+        };
+
+        layer_fn {
+            bindings = <
+ &kp F1  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5             &none                                                   &none          &kp F6    &kp F7        &kp F8           &kp F9  &kp F10  &kp F11
+ &trans  &trans  &trans  &trans  &trans  &trans             &none                                                   &none          &trans    &trans        &trans           &trans   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans  &trans             &none  &trans  &trans                  &trans  &trans   &none  &kp LEFT_ARROW  &kp DOWN  &kp UP_ARROW  &kp RIGHT_ARROW   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                            &trans                  &trans                          &trans    &trans        &trans           &trans   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans                  &trans  &trans  &trans                    &trans        &trans           &trans   &trans   &trans
+            >;
+        };
+
+        layer_mod {
+            bindings = <
+  &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &none                                                                          &trans   &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none         &none         &none            &bootloader                                                                     &bootloader   &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none         &none         &none                  &none   &none   &none                  &bt BT_CLR       &none  &rgb_ug RGB_MEFS_CMD 5   &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none    &macro_ver         &none                                  &none                       &none                                       &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none         &none                                &none   &none   &none                       &none  &bl BL_TOG         &rgb_ug RGB_TOG          &bl BL_INC  &bl BL_DEC   &none   &none   &none
+            >;
+        };
+
+        layer_media_player {
+            bindings = <
+   &trans  &trans  &trans  &kp C_BRIGHTNESS_DEC  &kp C_BRI_UP  &trans            &trans                                                  &trans  &kp C_PP  &kp C_VOLUME_DOWN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &trans
+   &trans  &trans  &trans                &trans        &trans  &trans            &trans                                                  &trans    &trans             &trans        &trans      &trans      &trans  &trans
+ &kp CAPS  &trans  &trans                &trans        &trans  &trans            &trans  &trans  &trans                  &trans  &trans  &trans    &trans             &trans        &trans      &trans      &trans  &trans
+   &trans  &trans  &trans                &trans        &trans  &trans                            &trans                  &trans                    &trans             &trans        &trans      &trans      &trans  &trans
+   &trans  &trans  &trans                &trans        &trans                    &trans  &trans  &trans                  &trans  &trans  &trans                       &trans        &trans      &trans      &trans  &trans
+            >;
+        };
+
+    };
+};
