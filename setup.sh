@@ -53,7 +53,7 @@ fi
 log "Installing CLI tools via brew"
 BREW_FORMULAS=(
     # Core dev
-    git gh lazygit just
+    git gh lazygit git-delta just
     # Search / nav
     ripgrep fd fzf bat eza tree
     # Editor + terminal multiplexer
