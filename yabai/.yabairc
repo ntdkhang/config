@@ -15,11 +15,11 @@ set -x
 declare -A gaps
 declare -A color
 
-gaps["top"]="2"
-gaps["bottom"]="2"
-gaps["left"]="2"
-gaps["right"]="2"
-gaps["inner"]="2"
+gaps["top"]=2
+gaps["bottom"]=2
+gaps["left"]=2
+gaps["right"]=2
+gaps["inner"]=2
 
 color["focused"]="0xE0808080"
 color["normal"]="0x00010101"
@@ -32,11 +32,11 @@ color["preselect"]="0xE02d74da"
 
 yabai -m config layout                      bsp
 
-yabai -m config top_padding                 "${gaps["top"]}"
-yabai -m config bottom_padding              "${gaps["bottom"]}"
-yabai -m config left_padding                "${gaps["left"]}"
-yabai -m config right_padding               "${gaps["right"]}"
-yabai -m config window_gap                  "${gaps["inner"]}"
+yabai -m config top_padding                 ${gaps["top"]}
+yabai -m config bottom_padding              ${gaps["bottom"]}
+yabai -m config left_padding                ${gaps["left"]}
+yabai -m config right_padding               ${gaps["right"]}
+yabai -m config window_gap                  ${gaps["inner"]}
 
 yabai -m config mouse_follows_focus         off
 yabai -m config focus_follows_mouse         off
@@ -71,6 +71,12 @@ yabai -m rule --add label="App Store" app="^App Store$" manage=off
 yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+
+yabai -m rule --add label="Ghostty" app="^Ghostty$" manage=off
+# yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+# yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+# yabai -m signal --add app='^Finder$' event=window_created action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+# yabai -m signal --add app='^Finder$' event=window_destroyed action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
 
 set +x
 printf "yabai: configuration loaded...\\n"

@@ -79,6 +79,22 @@ alt - t : \
     yabai -m window --toggle float; \
     yabai -m window --toggle border
 
+# Stack windows by direction
+shift + alt - left : yabai -m window --stack west
+shift + alt - down : yabai -m window --stack south
+shift + alt - up : yabai -m window --stack north
+shift + alt - right : yabai -m window --stack east
+
+# Focus window in stack
+alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+# Toggle stack layout
+ctrl + alt - s : yabai -m space --layout stack
+
+# Switch to bsp layout
+ctrl + alt - b : yabai -m space --layout bsp
+
 # Restart Yabai
 shift + lctrl + alt - r : \
     /usr/bin/env osascript <<< \

@@ -2,3 +2,45 @@
 iterm2/
 alacritty/.alacritty-colorscheme/
 iOS/
+
+# Credentials / auth state
+gcloud/
+gh/
+firebase/
+configstore/
+helm/
+
+# Tool state
+git/
+.wrangler/
+.LuminanceHDR/
+QtProject/
+qBittorrent/
+zk/
+marksman/
+
+# Binaries / archives / vendored clones
+codelldb-x86_64-darwin/
+nvim.zip
+nvimasdf/
+Adv360-Pro-ZMK/
+alacritty/themes/
+opencode/opencode-notificator/
+
+# Karabiner auto-generated backups
+karabiner/automatic_backups/
+
+# Node / bundler state
+**/node_modules/
+**/bun.lock
+**/package-lock.json
+**/.wrangler/
+
+# Per-machine AI tool state
+nvim/.claude/
+nvim/.opencode/
+nvim/.nvimlog
+nvim/checkhealth.md
+opencode/opencode-notifier-state.json
+opencode/opencode.json.tui-migration.bak
+opencode/tui.json

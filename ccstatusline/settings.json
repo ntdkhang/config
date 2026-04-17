@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "git-changes",
+        "color": "cyan"
+      },
+      {
+        "id": "5",
+        "type": "context-percentage-usable",
+        "color": "magenta"
+      }
+    ],
+    [
+      {
+        "id": "d9ab4378-9330-467f-87be-74bcbcd0a160",
+        "type": "model",
+        "color": "brightRed"
+      }
+    ],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "theme": "gruvbox",
+    "autoAlign": false
+  }
+}

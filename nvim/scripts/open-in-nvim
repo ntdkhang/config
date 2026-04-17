@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Open a file path in the neovim instance running in a tmux pane.
+# Usage: open-in-nvim <file[:line]>
+
+set -euo pipefail
+
+TMX=/usr/local/bin/tmux
+
+echo "$(date): called with args: $*" >> /tmp/open-in-nvim.log
+
+input="${1:-}"
+if [[ -z "$input" ]]; then
+  echo "Usage: open-in-nvim <file[:line]>" >&2
+  exit 1
+fi
+
+# Strip leading/trailing whitespace and common wrapper chars
+input="${input#"${input%%[![:space:]]*}"}"
+input="${input%"${input##*[![:space:]]}"}"
+input="${input#(}"
+input="${input%)}"
+
+# Parse optional :line suffix
+if [[ "$input" =~ ^(.+):([0-9]+)$ ]]; then
+  file="${BASH_REMATCH[1]}"
+  line="${BASH_REMATCH[2]}"
+else
+  file="$input"
+  line=""
+fi
+
+# Build nvim open args
+if [[ -n "$line" ]]; then
+  nvim_cmd=":edit +${line} ${file}"
+else
+  nvim_cmd=":edit ${file}"
+fi
+
+# Find nvim pane within the current session only
+nvim_pane=""
+active_session=$($TMX display-message -p '#{session_name}' 2>/dev/null) || true
+active_window=$($TMX display-message -p '#{window_id}' 2>/dev/null) || true
+
+# 1. Try active window first
+if [[ -n "$active_window" ]]; then
+  nvim_pane=$($TMX list-panes -t "$active_window" -F '#{pane_id} #{pane_current_command}' 2>/dev/null \
+    | grep -i 'nvim' \
+    | head -1 \
+    | awk '{print $1}') || true
+fi
+
+# 2. Fall back to any nvim pane in the current session (lowest pane ID)
+if [[ -z "$nvim_pane" && -n "$active_session" ]]; then
+  nvim_pane=$($TMX list-panes -s -t "$active_session" -F '#{pane_id} #{pane_current_command}' 2>/dev/null \
+    | grep -i 'nvim' \
+    | head -1 \
+    | awk '{print $1}') || true
+fi
+
+echo "$(date): file=$file line=$line nvim_pane=$nvim_pane" >> /tmp/open-in-nvim.log
+
+if [[ -n "$nvim_pane" ]]; then
+  # Open file in existing nvim
+  echo "$(date): sending cmd=$nvim_cmd to pane=$nvim_pane" >> /tmp/open-in-nvim.log
+  $TMX send-keys -t "$nvim_pane" Escape
+  $TMX send-keys -t "$nvim_pane" "$nvim_cmd" Enter
+  $TMX select-window -t "$nvim_pane"
+  $TMX select-pane -t "$nvim_pane"
+else
+  # 3. No nvim anywhere — create one in the active session
+  echo "$(date): no nvim found, creating new pane" >> /tmp/open-in-nvim.log
+  if [[ -n "$line" ]]; then
+    $TMX split-window -h "nvim +${line} ${file}"
+  else
+    $TMX split-window -h "nvim ${file}"
+  fi
+fi

@@ -6,6 +6,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # export TERM=xterm-256color
 
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+
 export DEV="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev"
 export SCHOOL="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/School"
 export NOTES="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Personal/Notes"
@@ -112,3 +116,36 @@ source $ZSH/oh-my-zsh.sh
 
 # Created by `pipx` on 2024-03-28 14:42:40
 export PATH="$PATH:/Users/dk/.local/bin"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/Users/dk/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dk/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dk/google-cloud-sdk/completion.zsh.inc'; fi
+
+# opencode
+export PATH=/Users/dk/.opencode/bin:$PATH
+
+# just completions
+source <(JUST_COMPLETE=zsh just)
+
+# Mille - BEGIN (managed by setup.sh, safe to re-run)
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
+export BRAIN_USER="khang"
+# Mille - END
