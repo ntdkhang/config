@@ -157,6 +157,11 @@ link() {
 link "$DOTFILES/.zshrc"   "$HOME/.zshrc"
 link "$DOTFILES/.zshenv"  "$HOME/.zshenv"
 
+# Expose nvim helper scripts on PATH (~/.local/bin is already on PATH via .zshrc)
+mkdir -p "$HOME/.local/bin"
+chmod +x "$DOTFILES/nvim/scripts/open-in-nvim"
+link "$DOTFILES/nvim/scripts/open-in-nvim" "$HOME/.local/bin/open-in-nvim"
+
 # -----------------------------------------------------------------------------
 # 9. Vendored clones (gitignored, fetched fresh per-machine)
 # -----------------------------------------------------------------------------
