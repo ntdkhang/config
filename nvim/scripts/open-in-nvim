@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-TMX=/usr/local/bin/tmux
+TMX=$(command -v tmux)
 
 echo "$(date): called with args: $*" >> /tmp/open-in-nvim.log
 
