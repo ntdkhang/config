@@ -134,8 +134,8 @@ regex = '(?:[~.]?/|[\w.-]+/)[\w.\[\]-]+(?:/[\w.\[\]-]+)*(?::\d+)?'
 hyperlinks = false
 post_processing = true
 persist = false
-command = { program = "/Users/dk/.local/bin/open-in-nvim", args = [] }
-mouse = { enabled = true }
+command = { program = "/bin/sh", args = ["-c", "exec \"$HOME/.local/bin/open-in-nvim\" \"$0\""] }
+mouse = { enabled = true, mods = "Shift" }
 binding = { key = "O", mods = "Command" }
 
 [window]

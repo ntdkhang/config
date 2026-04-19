@@ -1,0 +1,9 @@
+# Vendored TPM-managed tmux plugin clones
+tmux/plugins/
+
+# Generated lockfiles / state
+nvim/lazy-lock.json
+lazygit/state.yml
+
+node_modules/
+

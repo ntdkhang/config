@@ -10,9 +10,9 @@ export ZSH="$HOME/.oh-my-zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 
-export DEV="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev"
-export SCHOOL="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/School"
-export NOTES="/Users/dk/Library/Mobile Documents/com~apple~CloudDocs/Documents/Personal/Notes"
+export DEV="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev"
+export SCHOOL="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/School"
+export NOTES="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/Personal/Notes"
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
@@ -115,7 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Created by `pipx` on 2024-03-28 14:42:40
-export PATH="$PATH:/Users/dk/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -123,7 +123,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
-export PNPM_HOME="/Users/dk/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -131,13 +131,13 @@ esac
 # pnpm end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dk/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/dk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dk/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # opencode
-export PATH=/Users/dk/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
 # just completions
 source <(JUST_COMPLETE=zsh just)
@@ -147,3 +147,6 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
 export BRAIN_USER="khang"
 # Mille - END
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/Users/khang/.opencode/bin:$PATH

@@ -82,6 +82,7 @@ log "Installing GUI apps via brew cask"
 BREW_CASKS=(
     alacritty
     karabiner-elements
+    lunar
     font-jetbrains-mono-nerd-font
     font-hack-nerd-font
 )
@@ -161,6 +162,23 @@ link "$DOTFILES/.zshenv"  "$HOME/.zshenv"
 mkdir -p "$HOME/.local/bin"
 chmod +x "$DOTFILES/nvim/scripts/open-in-nvim"
 link "$DOTFILES/nvim/scripts/open-in-nvim" "$HOME/.local/bin/open-in-nvim"
+
+# Register local opencode TUI plugins globally so they show up in every
+# opencode session, not just inside ~/.config/. Writes ~/.config/opencode/tui.json,
+# which we don't track because the spec contains an absolute path.
+# We `cd /tmp` because opencode treats the cwd as a project — running from
+# ~/.config would create a project-local install instead of a global one.
+if command -v opencode >/dev/null 2>&1; then
+    for plugin_dir in "$DOTFILES/opencode/plugin"/*/; do
+        if [[ -f "$plugin_dir/package.json" ]]; then
+            log "Registering opencode plugin (global): $plugin_dir"
+            (cd /tmp && opencode plugin --global --force "${plugin_dir%/}") \
+                || warn "opencode plugin register failed: $plugin_dir"
+        fi
+    done
+else
+    skip "opencode plugin registration (opencode not on PATH)"
+fi
 
 # -----------------------------------------------------------------------------
 # 9. Vendored clones (gitignored, fetched fresh per-machine)

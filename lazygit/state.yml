@@ -1,15 +1,13 @@
 lastupdatecheck: 0
 recentrepos:
-- /Users/dk/Dev/Mille/mille
-- /Users/dk/Dev/AgencyX
-- /Users/dk/Dev/GrepHacker/GrepCoder
-- /Users/dk/Dev/GrepHacker/GTM
-- /Users/dk/.config/nvim
-- /Users/dk/Dev/GrepHacker/GrepWorktree
-- /Users/dk/Dev/GrepHacker/PitchDeck
-- /Users/dk/Dev/GrepHacker/ApplicationMedia/YCX26/demo_vid
+    - /Users/khang/Dev/Mille/mille
+    - /Users/khang/.config
 startuppopupversion: 5
+didshowhunkstaginghint: true
+lastversion: 0.61.1
 customcommandshistory:
-- q
+    - q
 hidecommandlog: false
-ignorewhitespaceindiffview: false
+githubPullRequests:
+    /Users/khang/.config: []
+    /Users/khang/Dev/Mille/mille: []

@@ -15,11 +15,11 @@ set -x
 declare -A gaps
 declare -A color
 
-gaps["top"]=2
-gaps["bottom"]=2
-gaps["left"]=2
-gaps["right"]=2
-gaps["inner"]=2
+gaps["top"]=0
+gaps["bottom"]=0
+gaps["left"]=0
+gaps["right"]=0
+gaps["inner"]=0
 
 color["focused"]="0xE0808080"
 color["normal"]="0x00010101"

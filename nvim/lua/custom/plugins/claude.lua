@@ -4,7 +4,7 @@ return {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
     opts = {
-      terminal_cmd = "/Users/dk/.local/bin/claude",
+      terminal_cmd = vim.env.HOME .. "/.local/bin/claude",
       -- When true, successful sends will focus the Claude terminal if already connected
       focus_after_send = true,
       -- Diff Integration

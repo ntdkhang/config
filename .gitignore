@@ -44,3 +44,4 @@ nvim/checkhealth.md
 opencode/opencode-notifier-state.json
 opencode/opencode.json.tui-migration.bak
 opencode/tui.json
+.opencode/

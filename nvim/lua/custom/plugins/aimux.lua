@@ -6,7 +6,7 @@ return {
     require("custom.aimux").setup({
       tools = {
         claude = {
-          cmd = { "/Users/dk/.local/bin/claude" },
+          cmd = { vim.env.HOME .. "/.local/bin/claude" },
           patterns = { "claude" },
         },
         opencode = {

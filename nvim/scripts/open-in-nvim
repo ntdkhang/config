@@ -4,7 +4,17 @@
 
 set -euo pipefail
 
+# GUI-launched callers (Alacritty hints, Karabiner, etc.) inherit launchd's
+# minimal PATH which excludes Homebrew. Prepend both arch's brew bins so
+# tmux resolves regardless of how this script was invoked.
+PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 TMX=$(command -v tmux)
+if [[ -z "$TMX" ]]; then
+  echo "$(date): tmux not found on PATH=$PATH" >> /tmp/open-in-nvim.log
+  echo "open-in-nvim: tmux not found on PATH" >&2
+  exit 1
+fi
 
 echo "$(date): called with args: $*" >> /tmp/open-in-nvim.log
 
